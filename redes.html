@@ -18,7 +18,8 @@
       color: #1e293b;
     }
     header {
-      background-color: #0f172a;
+      background-color: rgba(15, 23, 42, 0.9); /* Fundo semi-transparente */
+      transition: background-color 0.3s ease-in-out;
       color: white;
       padding: 1rem 2rem;
       display: flex;
@@ -60,6 +61,10 @@
       transform: scaleX(1);
       transform-origin: left;
     }
+    nav a.active {
+      color: #38bdf8;
+      font-weight: 800;
+    }
     main {
       padding: 3rem 2rem;
       max-width: 900px;
@@ -69,6 +74,9 @@
       display: none;
       background: white;
       border-radius: 12px;
+      background: linear-gradient(to bottom, #ffffff, #f8fafc);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
       padding: 2rem;
       margin-bottom: 2rem;
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
@@ -126,9 +134,28 @@
     .indice a:hover {
       text-decoration: underline;
     }
+    a, button {
+      transition: all 0.3s ease-in-out;
+    }
+
+    a:hover, button:hover {
+      color: #0ea5e9;
+      transform: scale(1.05);
+    }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+      nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin: 0.5rem 0;
+      }
     }
     footer {
       background-color: #0f172a;
@@ -139,6 +166,7 @@
       font-size: 0.875rem;
       box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     }
+
   </style>
 </head>
 <body>
@@ -182,9 +210,9 @@
     
     <p><b>Grupo 2:</b></p>
     <ul>
-      <li>Fernando Bruzzi - DRE: 123360519</li>
-      <li>Guilherme En Shin Hu - DRE: 123224674</li>
-      <li>Vivian Souza - DRE: 123205793</li>
+      <li>Fernando Bruzzi </li>
+      <li>Guilherme En Shin Hu</li>
+      <li>Vivian Souza</li>
     </ul>
   </section>
 
@@ -611,12 +639,16 @@
       <h2><i class="fas fa-book"></i> Bibliografia</h2>
       <p>Esta seção reúne os principais documentos técnicos, artigos acadêmicos e recursos gerais sobre o HTTP/3, QUIC e QPACK, além de ferramentas para explorar e testar o protocolo.</p>
 
-      <h3>RFCs e GitHub dos Desenvolvedores</h3>
+      <h3>Documentações oficiais: RFCs e GitHub dos Desenvolvedores</h3>
       <ul>
         <li><a href="https://www.rfc-editor.org/rfc/rfc9114.html" target="_blank">RFC 9114 - HTTP/3</a></li>
-        <li><a href="https://github.com/quicwg" target="_blank">GitHub do grupo de trabalho QUIC</a></li>
         <li><a href="https://datatracker.ietf.org/doc/html/rfc9000" target="_blank">RFC 9000 - QUIC</a></li>
         <li><a href="https://datatracker.ietf.org/doc/html/rfc9204" target="_blank">RFC 9204 - QPACK</a></li>
+        <li><a href="https://www.rfc-editor.org/rfc/rfc9001.html" target="_blank">RFC 9001 - TLS</a></li>
+        <li><a href="https://datatracker.ietf.org/doc/html/rfc1945" target="_blank">RFC 1945 - HTTP/1.0 </a></li>
+        <li><a href="https://datatracker.ietf.org/doc/html/rfc2068" target="_blank">RFC 2068 - HTTP/1.1</a></li>
+        <li><a href="https://datatracker.ietf.org/doc/html/rfc7540" target="_blank">RFC 7540 - HTTP/2.0 </a></li>
+        <li><a href="https://github.com/quicwg" target="_blank">GitHub do grupo de trabalho QUIC</a></li>
       </ul>
 
       <h3>Artigos Acadêmicos Relevantes</h3>
@@ -630,11 +662,22 @@
 
       <h3>Recursos Gerais sobre HTTP/3</h3>
       <ul>
-        <li><a href="https://en.wikipedia.org/wiki/HTTP/3" target="_blank">Wikipedia - HTTP/3</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/HTTP/3" target="_blank">Wikipedia (EN) - HTTP/3</a></li>
+        <li><a href="https://pt.wikipedia.org/wiki/HTTP/3" target="_blank">Wikipedia (PT) - HTTP/3</a></li>
+        <li><a href="https://pt.wikipedia.org/wiki/QUIC" target="_blank">Wikipedia (PT) - QUIC</a></li>
         <li><a href="https://www.cloudflare.com/pt-br/learning/performance/what-is-http3/" target="_blank">Cloudflare - O que é HTTP/3?</a></li>
         <li><a href="https://learn.microsoft.com/pt-br/dotnet/core/extensions/httpclient-http3" target="_blank">Microsoft - HTTP/3 no .NET</a></li>
         <li><a href="https://kinsta.com/pt/blog/http3/" target="_blank">Kinsta - Guia sobre HTTP/3</a></li>
         <li><a href="https://www.hostmidia.com.br/blog/o-que-e-http3-e-quic/" target="_blank">HostMídia - O que é HTTP/3 e QUIC?</a></li>
+        <li><a href="https://kinsta.com/pt/blog/http3/" target="_blank">Kinsta - O Que é HTTP/3</a></li>
+        <li><a href="https://kmcd.dev/posts/http0.9-from-scratch/" target="_blank">kmcd.dev - HTTP/0.9 From Scratch</a></li>
+        <li><a href="https://http.dev/0.9" target="_blank">http.dev - HTTP/0.9 </a></li>
+        <li><a href="https://www.youtube.com/watch?v=HnDsMehSSY4&ab_channel=ChrisGreer" target="_blank">YouTube - HTTP/3 Explained by Chris Greer</a></li>
+        <li><a href="https://www.youtube.com/watch?v=_QQX0Ezpq8U&ab_channel=NGINX" target="_blank">YouTube - HTTP/3 and QUIC by NGINX</a></li>
+        <li><a href="https://www.ionos.com/digitalguide/hosting/technical-matters/quic-the-internet-transport-protocol-based-on-udp/" target="_blank">IONOS - QUIC: The Internet Transport Protocol Based on UDP</a></li>
+        <li><a href="https://blog.cloudflare.com/the-road-to-quic/" target="_blank">Cloudflare Blog - The Road to QUIC</a></li>
+        <li><a href="https://w3techs.com/technologies/details/ce-http3" target="_blank">W3Techs - HTTP/3 Usage Statistics</a></li>
+        <li><a href="https://toxigon.com/how-http3-is-changing-the-web" target="_blank">Toxigon - How HTTP/3 is Changing the Web</a></li>
       </ul>
 
       <h3>Ferramentas para Testar HTTP/3</h3>
@@ -655,5 +698,25 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
+
+  <button id="backToTop" style="display: none; position: fixed; bottom: 2rem; right: 2rem; background-color: #38bdf8; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    ↑
+  </button>
+
+  <script>
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
 </body>
 </html>
