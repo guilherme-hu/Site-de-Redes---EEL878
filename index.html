@@ -277,7 +277,7 @@
       justify-content: center;
     }
     #FeFo.active { 
-      display: flex; /* Faz com que #FeFo use flexbox quando ativa */
+      display: flex; 
     }
     #GuIgUi {
       padding: 2rem;
@@ -288,7 +288,18 @@
       justify-content: center;
     }
     #GuIgUi.active { 
-      display: flex; /* Faz com que #FeFo use flexbox quando ativa */
+      display: flex; 
+    }
+    #ViViaN {
+      padding: 2rem;
+      margin: auto;
+      width: 1000px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #ViViaN.active { 
+      display: flex; 
     }
 
     .faq-item {
@@ -806,8 +817,8 @@
   </section>
 
   <section id="perguntas">
-   <h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
-    <p>Aqui estão algumas perguntas comuns sobre HTTP/3 e suas respostas. Clique em uma pergunta para ver a resposta.</p>
+   <h2><i class="fas fa-question-circle"></i> Perguntas Propostas</h2>
+    <p>Aqui estão algumas perguntas sobre HTTP/3 e suas respostas sobre o conteúdo deste site para exercitar! Clique em uma pergunta para ver a resposta.</p>
 
     <details class="faq-item">
       <summary class="faq-question">Qual das versões do HTTP consolidou a sintaxe?</summary>
@@ -1134,6 +1145,14 @@
               'src/TLS.html', 
               'guigui', 
               '1200px'
+          );
+      } else if (sectionIdFromHash === 'ViViaN') {
+          targetSection = createSpecialSection(
+              'ViViaN', 
+              'Página especial da Vivian!', 
+              'src/QPACK.html', 
+              'vivi', 
+              '800px'
           );
       } else {
           targetSection = document.getElementById(sectionIdFromHash);
