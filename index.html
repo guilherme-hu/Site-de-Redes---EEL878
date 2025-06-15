@@ -290,6 +290,47 @@
     #GuIgUi.active { 
       display: flex; /* Faz com que #FeFo use flexbox quando ativa */
     }
+
+    .faq-item {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .faq-item summary {
+      padding: 1rem 1.5rem;
+      font-weight: 600;
+      color: #0f172a;
+      cursor: pointer;
+      list-style: none; /* Remove o marcador padrão */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s;
+    }
+    .faq-item summary:hover {
+      background-color: #f1f5f9;
+    }
+    .faq-item summary::after { /* Ícone de seta */
+      content: '\f078'; /* Font Awesome down arrow */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      transition: transform 0.3s ease-in-out;
+    }
+    .faq-item[open] summary::after {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      border-top: 1px solid #e2e8f0;
+      line-height: 1.7;
+      color: #334155;
+    }
+    .faq-answer p {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
   </style>
 </head>
 
@@ -305,6 +346,7 @@
       <a href="#aplicacoes" onclick="navigate('aplicacoes')">Aplicações</a>
       <a href="#persfut" onclick="navigate('persfut')">Futuro</a>
       <a href="#conclusao" onclick="navigate('conclusao')">Conclusão</a>
+      <a href="#perguntas" onclick="navigate('perguntas')">Perguntas</a></li>
       <a href="#bib" onclick="navigate('bib')">Bibliografia</a>
     </nav>
     <button id="mobile-menu-toggle">
@@ -331,6 +373,7 @@
         <li><a href="#aplicacoes" onclick="navigate('aplicacoes')">Aplicações</a></li>
         <li><a href="#persfut" onclick="navigate('persfut')">Perspectivas Futuras</a></li>
         <li><a href="#conclusao" onclick="navigate('conclusao')">Conclusão</a></li>
+        <li><a href="#perguntas" onclick="navigate('perguntas')">Perguntas</a></li>
         <li><a href="#bib" onclick="navigate('bib')">Bibliografia</a></li>
       </ul>
 
@@ -676,7 +719,7 @@
         É importante ressaltar que em uma stream de requisição o cliente só pode enviar uma requisição e o servidor pode enviar zero ou mais respostas de requisição. Uma vez que a requisição é finalizada, fecha-se a stream.
     </p>
     <p>
-        Em caso de perda de pacotes, nesse caso frames, o protocolo simplesmente manda-os por novos frames em novas streams a menos que a stream tenha sido cancelada (o que pode ocorrer devido a um erro em uma stream).<a href="#bib" onclick="navigate('bib')">[1]</a>
+      Em caso de perda de pacotes, nesse caso frames, o protocolo simplesmente realiza o reenvio pela mesma stream, a menos que a stream tenha sido cancelada(o que pode ocorrer devido a um erro em uma stream).<a href="#bib" onclick="navigate('bib')">[1]</a>
     </p>
 
       <h3>Fechamento de uma conexão </h3>
@@ -711,7 +754,7 @@
         <img src="images/HTTP_type_usage.png" alt="Distribuição de requisições HTTP por versão em função do tempo" style="width: 75%;">
         <p><strong>Figura:</strong> Imagem que mostra a distribuição de requisições HTTP por versão em função do tempo. Fonte: <a href="https://radar.cloudflare.com/explorer" target="_blank">https://radar.cloudflare.com/explorer</a></p>
       </div>
-      <p>Do lado dos servidores, a adoção do HTTP/3 vem crescendo à medida que os principais softwares passam a oferecer suporte ao protocolo. Servidores como Nginx, LiteSpeed, Caddy, HAProxy e IIS já permitem sua utilização, tornando mais fácil para administradores migrarem suas infraestruturas. Grandes empresas como Google, Facebook e Akamai já utilizam o protocolo em seus próprios serviços e plataformas, contribuindo para sua consolidação. No entanto, é a Cloudflare que se destaca como uma das principais impulsionadoras da adoção em larga escala, ao oferecer suporte ativo ao HTTP/3 para milhões de sites. Ainda assim, a transição completa depende da configuração e atualização adequadas por parte dos administradores, especialmente em servidores como Nginx e Apache, onde a adesão ainda é parcial.<a href="#bib" onclick="navigate('bib')">[18]</a></p>
+      <p>Do lado dos servidores, a adoção do HTTP/3 vem crescendo à medida que os principais softwares passam a oferecer suporte ao protocolo. Servidores como Nginx, LiteSpeed, Caddy, HAProxy e IIS já permitem sua utilização, tornando mais fácil para administradores migrarem suas infraestruturas. Grandes empresas como Google, Facebook e Akamai já utilizam o protocolo em seus próprios serviços e plataformas, contribuindo para sua consolidação. No entanto, é a Cloudflare que se destaca como uma das principais impulsionadoras da adoção em larga escala, ao oferecer suporte ativo ao HTTP/3 para milhões de sites. Ainda assim, a transição completa depende da configuração e atualização adequadas por parte dos administradores, especialmente em servidores como Nginx e Apache, onde a adesão ainda é parcial.<a href="#bib" onclick="navigate('bib')">[18]</a><a href="#bib" onclick="navigate('bib')">[19]</a></p>
       <h3>Integração com Redes de Distribuição de Conteúdo (CDNs)</h3>
       <p>    As Redes de Distribuição de Conteúdo (Content Delivery Networks — CDNs) figuram entre os primeiros ambientes a adotar o HTTP/3 de forma ampla. Plataformas como Cloudflare e Fastly já integraram o protocolo às suas infraestruturas, aproveitando seus benefícios para acelerar a entrega de conteúdo, reduzir a latência e aumentar a confiabilidade da transmissão. Essas vantagens são especialmente relevantes para conteúdos de alta demanda, como vídeos em streaming, downloads de arquivos pesados e atualizações em tempo real.</p>
       <p>Embora o uso de CDNs represente uma solução eficiente para a adoção do HTTP/3, é importante considerar algumas limitações, como custos operacionais e a dependência de serviços de terceiros. Ainda assim, os ganhos em desempenho, escalabilidade e alcance global fazem com que as CDNs sejam uma escolha estratégica para muitas organizações que buscam modernizar sua infraestrutura de rede.<a href="#bib" onclick="navigate('bib')">[29]</a></p>
@@ -760,6 +803,47 @@
     <p>À medida que navegadores, servidores e redes de distribuição de conteúdo continuam a adotar o HTTP/3, espera-se que ele se torne o padrão dominante para comunicações na internet. Sua capacidade de oferecer conexões mais rápidas, seguras e resilientes o torna uma escolha ideal para atender às demandas da web moderna e de tecnologias emergentes, como a Internet das Coisas (IoT).</p>
     <p>Esperamos que este site tenha ajudado você a compreender melhor o impacto e as vantagens do HTTP/3. Seja você um desenvolvedor, estudante ou entusiasta da tecnologia, o futuro da web está sendo moldado por protocolos como este, e sua adoção é um passo importante para uma internet mais eficiente e acessível.</p>
     <p>Obrigado por visitar nosso site e explorar o mundo do HTTP/3 conosco!</p>
+  </section>
+
+  <section id="perguntas">
+   <h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
+    <p>Aqui estão algumas perguntas comuns sobre HTTP/3 e suas respostas. Clique em uma pergunta para ver a resposta.</p>
+
+    <details class="faq-item">
+      <summary class="faq-question">Qual das versões do HTTP consolidou a sintaxe?</summary>
+      <div class="faq-answer">
+        <p>HTTP/1.1</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">No que consiste o problema do Bloqueio de Cabeça de Linha no HTTP e como o protocolo de transporte QUIC resolve esse problema?</summary>
+      <div class="faq-answer">
+        <p>Bloqueio de Cabeça de Linha consiste no bloqueio da entrega de todos os outros pacotes posteriores em fluxo de dados por conta da perda ou reordenamento de um único pacote que pertence ao início desse fluxo de dados na conexão TCP.</p>
+        <p>O QUIC, base do HTTP/3, resolve isso de forma definitiva ao operar sobre UDP e usar múltiplos streams de dados independentes. Assim, quando um pacote se perde, ele pausa apenas o fluxo específico daquele recurso, enquanto todos os outros continuam a ser entregues ao navegador sem bloqueio.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">Quais as vantagens do uso do protocolo QUIC sobre o TCP nos quesitos de segurança e negociação de conexão?</summary>
+      <div class="faq-answer">
+        <p>O QUIC incorpora mecanismos de segurança de forma nativa e integrada com o TLS 1.3, exigindo que todas as conexões sejam criptografadas desde o início. Isso elimina a separação entre handshake de transporte e handshake de segurança, o que possibilita o estabelecimento de conexões seguras com apenas 1-RTT na primeira conexão e 0-RTT para conexões repetidas. Isso se destaca em relação ao TCP pois este protocolo costuma precisar de 2-RTT na negociação de conexão se inclui a segurança por TLS.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">O HTTP/3 otimiza a eficiência da comunicação através da compactação de cabeçalhos com o QPACK. Por que essa otimização é crucial em um cenário de múltiplas streams?</summary>
+      <div class="faq-answer">
+        <p>O QPACK no HTTP/3 permite a compactação de cabeçalhos de forma paralela e fora de ordem, acompanhando a independência das streams proporcionada pelo QUIC. Diferente do HPACK, que exigia envio sequencial e podia gerar bloqueios, o QPACK evita dependências entre as streams, garantindo transmissão eficiente, mesmo em cenários com perda de pacotes.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">O QUIC define diferentes tipos de streams (unidirecionais e bidirecionais, iniciados pelo cliente ou servidor). Como o HTTP/3 faz uso desses diferentes tipos de streams para gerenciar tanto as requisições/respostas HTTP quanto as funções de controle da conexão?</summary>
+      <div class="faq-answer">
+        <p>O HTTP/3 utiliza as streams bidirecionais para transportar as requisições e respostas HTTP, permitindo que cliente e servidor troquem dados de forma independente em cada stream. Já as streams unidirecionais são usadas para funções auxiliares e de controle da conexão, como o envio da tabela de compressão de cabeçalhos (QPACK), configuração da conexão (settings) e outros controles específicos do protocolo. </p>
+      </div>
+    </details>
   </section>
 
     <section id="bib">
